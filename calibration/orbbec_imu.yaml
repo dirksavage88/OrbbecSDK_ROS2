@@ -1,0 +1,11 @@
+#Accelerometer
+accelerometer_noise_density: np.float64(0.0010332999804942148) 
+accelerometer_random_walk: np.float64(0.00020144905965666828) 
+
+#Gyroscope
+gyroscope_noise_density: np.float64(8.417355058330517e-05) 
+gyroscope_random_walk: np.float64(9.675914938823483e-06) 
+
+rostopic: '/sensors/imu' #Make sure this is correct
+update_rate: 400.0 #Make sure this is correct
+
