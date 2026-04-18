@@ -28,7 +28,7 @@ def generate_launch_description():
         DeclareLaunchArgument("color_height", default_value="800"),
         DeclareLaunchArgument("color_fps", default_value="30"),
         DeclareLaunchArgument("color_format", default_value="MJPG"),
-        DeclareLaunchArgument("enable_color", default_value="true"),
+        DeclareLaunchArgument("enable_color", default_value="false"),
         DeclareLaunchArgument("color_flip", default_value="false"),
         DeclareLaunchArgument("color_qos", default_value="default"),
         DeclareLaunchArgument("color_camera_info_qos", default_value="default"),
