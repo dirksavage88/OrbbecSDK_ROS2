@@ -3696,11 +3696,39 @@ void OBCameraNode::onNewFrameCallback(const std::shared_ptr<ob::Frame> &frame,
     CHECK_NOTNULL(video_stream_profile);
     auto left_video_profile = stream_profile_[INFRA1]->as<ob::VideoStreamProfile>();
     CHECK_NOTNULL(left_video_profile);
-    auto ex = video_stream_profile->getExtrinsicTo(left_video_profile);
-    float fx = camera_info.k.at(0);
-    float fy = camera_info.k.at(4);
-    camera_info.p.at(3) = -fx * ex.trans[0] / 1000.0 + 0.0;
-    camera_info.p.at(7) = -fy * ex.trans[1] / 1000.0 + 0.0;
+    // auto ex = video_stream_profile->getExtrinsicTo(left_video_profile);
+    // Fill in intrinsic camera matrix (undistorted only)
+    camera_info.k.at(0) = 608.951515; // fx
+    camera_info.k.at(2) = 626.488315; // cx
+    camera_info.k.at(4) = 601.847089; // fy
+    camera_info.k.at(5) = 394.013816; // cy
+    // float fx = camera_info.k.at(0);
+    // float fy = camera_info.k.at(4);
+    
+    // Fill in distortion parameters
+    camera_info.d.at(0) = -0.035294;
+    camera_info.d.at(1) = 0.116677;
+    camera_info.d.at(2) = -0.004794;
+    camera_info.d.at(3) = -0.008793;
+    camera_info.d.at(4) = 0.0;
+
+    // camera_info.p.at(3) = -fx * ex.trans[0] / 1000.0 + 0.0;
+    // camera_info.p.at(7) = -fy * ex.trans[1] / 1000.0 + 0.0;
+  } else {
+    camera_info.k.at(0) = 616.363576; // fx
+    camera_info.k.at(2) = 639.070097; // cx
+    camera_info.k.at(4) = 615.953246; // fy
+    camera_info.k.at(5) = 355.003612; // cy
+    
+    // float fx = camera_info.k.at(0);
+    // float fy = camera_info.k.at(4);
+    // Fill in distortion parameters 
+    camera_info.d.at(0) = -0.035233;
+    camera_info.d.at(1) = -0.007536;
+    camera_info.d.at(2) = -0.023935;
+    camera_info.d.at(3) = 0.002870;
+    camera_info.d.at(4) = 0.0;
+
   }
   CHECK(camera_info_publishers_.count(stream_index) > 0);
   camera_info_publishers_[stream_index]->publish(camera_info);

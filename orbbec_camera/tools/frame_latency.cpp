@@ -44,7 +44,7 @@ FrameLatencyNode::FrameLatencyNode(const std::string& node_name, const std::stri
                                    const rclcpp::NodeOptions& node_options)
     : Node(node_name, ns, node_options), logger_(this->get_logger()) {}
 
-std::string topic_name = "/camera/color/image_raw";
+std::string topic_name = "/camera/left_ir/image_raw";
 std::string topic_type = "image";
 
 template <typename MsgType>
